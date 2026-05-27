@@ -112,8 +112,8 @@ const ciberDataEngine = {
       "South-Eastern European power grids report increased load variance." 
     ] 
   }, 
-  CHINA: { 
-    title: "EVENT: CHINA EXPORT COLLAPSE", 
+  CHINA_SHOCK: { 
+    title: "EVENT: CHINA TRADE & EXPORT SHOCK", 
     level: "CATASTROPHIC (95% Drop)", 
     score: "91", 
     width: "95%", 
@@ -143,8 +143,8 @@ const ciberDataEngine = {
       { key: "Crude Oil", change: "-5.3%", cls: "green-text" } 
     ], 
     feed: [ 
-      "Systemic manufacturing freeze reported across major industrial sectors.", 
-      "Global retail giants issue warnings on holiday season inventory levels.", 
+      "Systemic manufacturing freeze reported across supply chain corridors.", 
+      "Global retail giants issue warnings on inventory levels.", 
       "Global trade network structural stability factor drops dramatically." 
     ] 
   } 
@@ -157,36 +157,30 @@ function triggerCyberShock(key, element) {
   const data = ciberDataEngine[key]; 
   if (!data) return;
 
-  // Ssenari panelindəki vizual aktivliyi (neon yaşıl çərçivəni) idarə edirik
   const btns = document.querySelectorAll('.scenario-list .scen-btn'); 
   btns.forEach(b => b.classList.remove('active')); 
   if (element) element.classList.add('active'); 
 
-  // 1. Core Analytics Setup 
   document.getElementById("event-name").innerText = data.title; 
   document.getElementById("shock-lvl").innerText = data.level; 
   document.getElementById("intensity-fill").style.width = data.width; 
   document.getElementById("global-score-num").innerHTML = `${data.score}<span class="small-total">/100</span>`; 
   
-  // 2. Statistical Extrapolations (Monte Carlo) 
   document.getElementById("mc-worst").innerText = data.worst; 
   document.getElementById("mc-best").innerText = data.best; 
   
-  // 3. Coordinate Sync for Geographical Pulse 
   const pulse = document.getElementById("center-pulse"); 
   if (pulse) {
     pulse.style.top = data.pulsePos.top; 
     pulse.style.left = data.pulsePos.left; 
   }
   
-  // 4. Color Transitions for Routing Topography 
   if (document.getElementById("flow-line-1")) document.getElementById("flow-line-1").setAttribute("stroke", data.linesColor.l1); 
   if (document.getElementById("flow-line-2")) document.getElementById("flow-line-2").setAttribute("stroke", data.linesColor.l2); 
   if (document.getElementById("flow-line-3")) document.getElementById("flow-line-3").setAttribute("stroke", data.linesColor.l3); 
   if (document.getElementById("flow-line-4")) document.getElementById("flow-line-4").setAttribute("stroke", data.linesColor.l4); 
   if (document.getElementById("flow-line-5")) document.getElementById("flow-line-5").setAttribute("stroke", data.linesColor.l5); 
   
-  // 5. Data Projection for Target Countries Matrix 
   let countryHtml = ""; 
   data.countries.forEach((c, idx) => { 
     countryHtml += ` 
@@ -198,7 +192,6 @@ function triggerCyberShock(key, element) {
   }); 
   document.getElementById("affected-countries-list").innerHTML = countryHtml; 
    
-  // 6. Risk Vectors for Industrial Sectors 
   let sectorHtml = ""; 
   data.sectors.forEach(s => { 
     sectorHtml += ` 
@@ -210,7 +203,6 @@ function triggerCyberShock(key, element) {
   }); 
   document.getElementById("sector-risk-list").innerHTML = sectorHtml; 
    
-  // 7. Commodity Price Impact Matrix 
   let priceHtml = ""; 
   data.prices.forEach(p => { 
     priceHtml += ` 
@@ -222,7 +214,6 @@ function triggerCyberShock(key, element) {
   }); 
   document.getElementById("price-impact").innerHTML = priceHtml; 
   
-  // 8. Log Streaming for Real-Time Event Feed 
   let feedHtml = ""; 
   const d = new Date(); 
   const timeStr = d.toTimeString().split(' ')[0]; 
@@ -237,19 +228,17 @@ function triggerCyberShock(key, element) {
 // ==============================================================================
 document.addEventListener("DOMContentLoaded", function() {
   
-  // A. Görünüş Düymələrinin İdarə Edilməsi (2D / 3D Keçidi)
+  // A. 2D / 3D Görünüş Düymələrinin Klik İdarəsi
   const viewButtons = document.querySelectorAll('.view-toggle button'); 
   viewButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       viewButtons.forEach(b => b.classList.remove('active')); 
       btn.classList.add('active'); 
-      
-      const currentView = btn.textContent.trim();
-      console.log(`Görünüş rejimi dəyişdirildi: ${currentView}`);
+      console.log(`Görünüş dəyişdirildi: ${btn.textContent.trim()}`);
     });
   });
 
-  // B. Dinamik Ssenari Düymələrinin Klik Eventləri
+  // B. Yenilənmiş Ssenari Düymələrinin Klik İdarəsi
   const scenarioButtons = document.querySelectorAll('.scenario-list .scen-btn'); 
   scenarioButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -262,13 +251,12 @@ document.addEventListener("DOMContentLoaded", function() {
       } else if (text.includes("AZERBAIJAN") || text.includes("AZE")) {
         triggerCyberShock('AZERI', button);
       } else if (text.includes("CHINA")) {
-        // "China Export Collapse", "US-China Trade War" və "China Export Control" bura daxildir
-        triggerCyberShock('CHINA', button);
+        triggerCyberShock('CHINA_SHOCK', button);
       }
     });
   });
 
-  // C. Sayt İlk Açılanda Tayvan Ssenarisini Yüklə
+  // C. İlkin Olaraq Tayvan Ssenarisini Yüklə
   const firstBtn = document.querySelector('.scenario-list .scen-btn');
   if (firstBtn) {
     triggerCyberShock('TAIWAN', firstBtn); 
