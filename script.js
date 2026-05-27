@@ -1,4 +1,6 @@
-// Central Data Engine for Core Micro-Simulation Frameworks 
+// ==============================================================================
+// CENTRAL DATA ENGINE: Core Micro-Simulation Frameworks 
+// ==============================================================================
 const ciberDataEngine = { 
   TAIWAN: { 
     title: "EVENT: TAIWAN CHIP CRISIS", 
@@ -136,7 +138,7 @@ const ciberDataEngine = {
     prices: [ 
       { key: "Global Manufacturing Index", change: "-22.4%", cls: "green-text" }, 
       { key: "Consumer Price Index", change: "+7.8%", cls: "red-text" }, 
-      { key: "Freight Containers", change: "-18.5%", cls: "green-text" }, // Tənzimlənmiş realistik trend
+      { key: "Freight Containers", change: "-18.5%", cls: "green-text" }, 
       { key: "Semiconductors", change: "+24.5%", cls: "red-text" }, 
       { key: "Crude Oil", change: "-5.3%", cls: "green-text" } 
     ], 
@@ -148,9 +150,12 @@ const ciberDataEngine = {
   } 
 }; 
 
-// Orchestration Layer for Dynamic State Changes 
+// ==============================================================================
+// ORCHESTRATION LAYER: Dynamic State Changes 
+// ==============================================================================
 function triggerCyberShock(key, element) { 
-  const btns = document.querySelectorAll('.scen-btn'); 
+  // Ssenari panelindəki vizual aktivliyi idarə edirik
+  const btns = document.querySelectorAll('.scenario-list button, .scen-btn'); 
   btns.forEach(b => b.classList.remove('active')); 
   if (element) element.classList.add('active'); 
   
@@ -169,15 +174,17 @@ function triggerCyberShock(key, element) {
   
   // 3. Coordinate Sync for Geographical Pulse 
   const pulse = document.getElementById("center-pulse"); 
-  pulse.style.top = data.pulsePos.top; 
-  pulse.style.left = data.pulsePos.left; 
+  if (pulse) {
+    pulse.style.top = data.pulsePos.top; 
+    pulse.style.left = data.pulsePos.left; 
+  }
   
   // 4. Color Transitions for Routing Topography 
-  document.getElementById("flow-line-1").setAttribute("stroke", data.linesColor.l1); 
-  document.getElementById("flow-line-2").setAttribute("stroke", data.linesColor.l2); 
-  document.getElementById("flow-line-3").setAttribute("stroke", data.linesColor.l3); 
-  document.getElementById("flow-line-4").setAttribute("stroke", data.linesColor.l4); 
-  document.getElementById("flow-line-5").setAttribute("stroke", data.linesColor.l5); 
+  if (document.getElementById("flow-line-1")) document.getElementById("flow-line-1").setAttribute("stroke", data.linesColor.l1); 
+  if (document.getElementById("flow-line-2")) document.getElementById("flow-line-2").setAttribute("stroke", data.linesColor.l2); 
+  if (document.getElementById("flow-line-3")) document.getElementById("flow-line-3").setAttribute("stroke", data.linesColor.l3); 
+  if (document.getElementById("flow-line-4")) document.getElementById("flow-line-4").setAttribute("stroke", data.linesColor.l4); 
+  if (document.getElementById("flow-line-5")) document.getElementById("flow-line-5").setAttribute("stroke", data.linesColor.l5); 
   
   // 5. Data Projection for Target Countries Matrix 
   let countryHtml = ""; 
@@ -225,7 +232,46 @@ function triggerCyberShock(key, element) {
   document.getElementById("live-feed").innerHTML = feedHtml; 
 } 
 
-// Initial State Setup 
+// ==============================================================================
+// VIEW TOGGLE CONTROLLER (2D / 3D Modları)
+// ==============================================================================
+const viewButtons = document.querySelectorAll('.view-toggle button'); 
+
+viewButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    viewButtons.forEach(b => b.classList.remove('active')); 
+    btn.classList.add('active'); 
+    
+    const currentView = btn.textContent.trim();
+    console.log(`Görünüş rejimi dəyişdirildi: ${currentView}`);
+  });
+});
+
+// ==============================================================================
+// SCENARIO BUTTONS INTERACTION LINK (Dinamik Klik Əlaqəsi)
+// ==============================================================================
+const scenarioButtons = document.querySelectorAll('.scenario-list button, .scen-btn'); 
+
+scenarioButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const text = button.innerText.toUpperCase();
+    
+    // Düymənin adına əsasən data engine-dəki açarı təyin edirik
+    if (text.includes("TAIWAN")) {
+      triggerCyberShock('TAIWAN', button);
+    } else if (text.includes("SUEZ")) {
+      triggerCyberShock('SUEZ', button);
+    } else if (text.includes("AZERBAIJAN") || text.includes("AZERI")) {
+      triggerCyberShock('AZERI', button);
+    } else if (text.includes("CHINA")) {
+      triggerCyberShock('CHINA', button);
+    }
+  });
+});
+
+// ==============================================================================
+// INITIAL STATE SETUP (Sayt Açılanda İlk Başlanğıc Vəziyyəti)
+// ==============================================================================
 window.onload = function() { 
   const firstBtn = document.querySelector('.scen-btn'); 
   triggerCyberShock('TAIWAN', firstBtn); 
