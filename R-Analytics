@@ -1,0 +1,67 @@
+R version 4.6.0 (2026-04-24) -- "Because it was There" 
+Copyright (C) 2026 The R Foundation for Statistical Computing 
+Platform: x86_64-pc-linux-gnu 
+R is free software and comes with ABSOLUTELY NO WARRANTY. 
+You are welcome to redistribute it under certain conditions. 
+Type 'license()' or 'licence()' for distribution details. 
+R is a collaborative project with many contributors. 
+Type 'contributors()' for more information and 
+'citation()' on how to cite R or R packages in publications. 
+Type 'demo()' for some demos, 'help()' for on-line help, or 
+'help.start()' for an HTML browser interface to help. 
+Type 'q()' to quit R. 
+> countries <- c("USA", "Germany", "Japan") 
+> impact <- c(18, 25, 30) 
+> > barplot(impact, 
++        names.arg = countries, 
++        col = "red", 
++        main = "Trade Shock Impact") 
+> # 1. Java Simulyatorundan çıxan real qlobal risk datası (Maksimum ÜDM itkiləri) 
+> economies <- c("Taiwan", "Vietnam", "South Korea", "Italy", "Germany", "Japan", 
+"USA", "France", "China") 
+> gdp_loss_pct <- c(5.42, 4.20, 3.85, 3.50, 2.84, 2.50, 1.80, 1.45, 1.20) 
+> > # 2. Futuristik Bloomberg terminalı görünüşü üçün qrafik fonunu qaraldırıq 
+> par(bg = "#0b0f1a", col.main = "#00ffcc", col.axis = "#8892b0", col.lab = 
+"white", fg = "#1f293d") 
+> > # 3. Horizontal (üfüqi) barplot qrafiki çəkirik 
+> barplot( 
++    rev(gdp_loss_pct),  
++    names.arg = rev(economies),  
++    horiz = TRUE,  
++    las = 1,  
++    col = "#ff0055",          # Neon Qırmızı rəng 
++    border = "#ff0055", 
++    main = "GLOBAL TRADE SHOCK: GDP AT RISK (%)", 
++    xlab = "Potential Economic Impact (Percentage)", 
++    cex.names = 0.9, 
++    space = 0.4 
++ ) 
+> > # 4. Qrafikin arxasına mühəndislik tor xətləri əlavə edirik 
+> grid(nx = NULL, ny = NA, col = "#1f293d", lty = "dashed") 
+> # Java mühərrikinin kütləvi hesabatdan (Batch Summary) çıxardığı real ÜDM 
+riskləri ($ Milyard) 
+> scenarios <- c("Trade War (USA->CHN)", "India-China Sanctions", "Tech Control 
+(CHN->TWN)",  
++               "Supply Chain (BRA->CHN)", "Tech Control (KOR->CHN)", "Sanctions 
+(DEU->RUS)", "Export Ban (SAU->JPN)") 
+> gdp_at_risk_billions <- c(2112, 1484, 1197, 1189, 1085, 838, 400) 
+> > # Qaranlıq Bloomberg terminalı fonu 
+> par(bg = "#0b0f1a", col.main = "#00ffcc", col.axis = "#8892b0", col.lab = 
+"white", fg = "#1f293d") 
+> > # Horizontal sütun qrafiki 
+> barplot( 
++    rev(gdp_at_risk_billions),  
++    names.arg = rev(scenarios),  
++    horiz = TRUE,  
++    las = 1,  
++    col = c("#ff0055"),  
++    border = "#ff0055", 
++    main = "WORLD TRADE SIMULATOR: TOTAL GDP AT RISK ($ BILLIONS)", 
++    xlab = "Financial Risk Volume in Billions ($)", 
++    cex.names = 0.8, 
++    space = 0.5 
++ ) 
+> > # Struktur şəbəkə xətləri 
+> grid(nx = NULL, ny = NA, col = "#1f293d", lty = "dashed") 
+Session restored from your saved work on 2026-May-23 14:58:36 UTC (5 hours ago) 
+> 
