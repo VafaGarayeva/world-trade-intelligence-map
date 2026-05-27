@@ -1,0 +1,206 @@
+HTML  
+<div class="wtim-dashboard"> 
+   
+  <header class="wtim-header"> 
+    <div class="header-left"> 
+      <div class="logo-icon"> </div> 
+      <div class="logo-text"> 
+        <h1>WTIM</h1> 
+        <span>Real-time Global Trade Flow & Economic Impact Analyzer</span> 
+      </div> 
+    </div> 
+    <div class="header-title-main">WORLD TRADE INTELLIGENCE MAP</div> 
+    <div class="header-right"> 
+      <div class="time-block">08:41:12 UTC<br><small>12 Apr 2025</small></div> 
+      <div class="alert-mode">    ALERT MODE</div> 
+    </div> 
+  </header> 
+  
+  <div class="main-grid"> 
+     
+    <aside class="side-column"> 
+      <div class="panel-box"> 
+        <h3>GLOBAL TRADE OVERVIEW</h3> 
+        <div class="metric-row"> 
+          <span>Total Trade Volume (2024)</span> 
+          <strong class="cyan-text">$32.4 Trillion <small class="green-text">+4.7% 
+YoY</small></strong> 
+        </div> 
+        <div class="metric-row"> 
+          <span>Active Trade Flows</span> 
+          <strong class="cyan-text">18,560 <span class="trend-line">   </span></strong> 
+        </div> 
+        <div class="metric-row"><span>Countries 
+Involved</span><strong>195</strong></div> 
+        <div class="metric-row"><span>Commodities 
+Tracked</span><strong>5,842</strong></div> 
+      </div> 
+  
+      <div class="panel-box"> 
+        <h3>TOP EXPORTERS</h3> 
+        <ol class="top-list"> 
+          <li><span>🇨🇳 China</span><strong>$3.64T</strong></li> 
+          <li><span>🇺🇸 USA</span><strong>$2.59T</strong></li> 
+          <li><span>🇩🇪 Germany</span><strong>$1.68T</strong></li> 
+          <li><span>🇯🇵 Japan</span><strong>$1.06T</strong></li> 
+          <li><span>🇳🇱 Netherlands</span><strong>$0.94T</strong></li> 
+        </ol> 
+        <button class="panel-btn">VIEW FULL RANKING</button> 
+      </div> 
+  
+      <div class="panel-box"> 
+        <h3>CRITICAL COMMODITIES</h3> 
+        <div class="com-row"><span>    Semiconductors</span><span class="badge badge
+red">HIGH DEPENDENCY</span></div> 
+        <div class="com-row"><span>     Crude Oil</span><span class="badge badge
+red">HIGH DEPENDENCY</span></div> 
+        <div class="com-row"><span>     Wheat</span><span class="badge badge
+orange">MEDIUM DEPENDENCY</span></div> 
+        <div class="com-row"><span>    Lithium</span><span class="badge badge
+red">HIGH DEPENDENCY</span></div> 
+        <div class="com-row"><span>       Rare Earth Metals</span><span class="badge 
+badge-red">HIGH DEPENDENCY</span></div> 
+      </div> 
+    </aside> 
+  
+    <main class="center-column"> 
+      <div class="scenario-selector-panel"> 
+        <span class="panel-label">SELECT EVENT / SHOCK:</span> 
+        <div class="scenario-buttons"> 
+          <button class="scen-btn active" onclick="triggerCyberShock('TAIWAN', this)">Taiwan 
+Chip Crisis</button> 
+          <button class="scen-btn" onclick="triggerCyberShock('SUEZ', this)">Suez Canal 
+Block</button> 
+          <button class="scen-btn" onclick="triggerCyberShock('AZERI', this)">Oil Supply 
+Shock (AZE)</button> 
+          <button class="scen-btn" onclick="triggerCyberShock('CHINA', this)">China Export 
+Collapse</button> 
+        </div> 
+      </div> 
+  
+      <div class="map-container" id="map-canvas"> 
+         
+        <svg class="advanced-cyber-map" viewBox="0 0 1000 500" 
+preserveAspectRatio="xMidYMid slice"> 
+          <g class="continents-layer" stroke="#1e293b" stroke-width="1.5" fill="#0b1329"> 
+            <path d="M50,80 L220,70 L260,120 L270,180 L160,240 L100,260 L140,200 L50,140 
+Z"/> 
+            <path d="M190,270 L290,320 L320,400 L280,490 L230,470 L180,340 Z"/> 
+            <path d="M430,240 L530,230 L570,290 L550,420 L490,450 L430,330 Z"/> 
+            <path d="M400,100 L550,70 L750,60 L940,100 L960,220 L860,330 L730,320 
+L630,240 L480,240 Z"/> 
+            <path d="M780,380 L880,370 L900,430 L830,460 L770,430 Z"/> 
+          </g> 
+  
+          <g class="trade-lines" stroke-width="2" fill="none"> 
+            <path id="flow-line-1" d="M730,190 Q480,110 200,130" stroke="#ef4444" stroke
+dasharray="5,5"/>  
+            <path id="flow-line-2" d="M730,190 Q600,130 460,130" stroke="#ef4444"/>  
+            <path id="flow-line-3" d="M730,190 Q800,260 830,380" stroke="#22c55e"/>  
+            <path id="flow-line-4" d="M200,150 Q300,270 260,360" stroke="#00ffcc"/>  
+            <path id="flow-line-5" d="M460,150 Q460,290 500,340" stroke="#f59e0b" stroke
+dasharray="3,3"/>  
+          </g> 
+  
+          <g class="map-labels" fill="#475569" font-family="monospace" font-size="11" font
+weight="bold"> 
+            <text x="120" y="110">CANADA</text> 
+            <text x="130" y="150" fill="#64748b">USA</text> 
+            <text x="110" y="190">MEXICO</text> 
+            <text x="230" y="350">BRAZIL</text> 
+            <text x="440" y="140" fill="#ef4444">FRANCE</text> 
+            <text x="480" y="110" fill="#ef4444">GERMANY</text> 
+            <text x="420" y="90">UK</text> 
+            <text x="620" y="110">RUSSIA</text> 
+            <text x="640" y="190">INDIA</text> 
+            <text x="690" y="150" fill="#3b82f6">CHINA</text> 
+            <text x="780" y="160">JAPAN</text> 
+            <text x="725" y="205" fill="#fff" font-size="12">TAIWAN</text> 
+            <text x="460" y="440">SOUTH AFRICA</text> 
+            <text x="800" y="420">AUSTRALIA</text> 
+          </g> 
+        </svg> 
+  
+        <div class="shock-pulse" id="center-pulse"></div> 
+         
+        <div class="map-core-text" id="map-status-text"> 
+          <span style="color:#ef4444; font-weight:bold;">       SIMULATION ACTIVE:</span><br> 
+          Network propagation tracks active linkages across all target nodes. 
+        </div> 
+  
+        <div class="map-legend"> 
+          <h4>TRADE FLOW VOLUME</h4> 
+          <div><span class="leg-line high"></span> High</div> 
+          <div><span class="leg-line med"></span> Medium</div> 
+          <div><span class="leg-line low"></span> Low</div> 
+          <div><span class="leg-line disrupted"></span> Disrupted</div> 
+        </div> 
+  
+        <div class="map-view-controls"> 
+          <span class="ctrl-node"> </span> 
+          <span class="ctrl-node">     </span> 
+          <span class="ctrl-node">     </span> 
+          <span class="ctrl-node active">2D</span> 
+        </div> 
+      </div> 
+    </main> 
+  
+    <aside class="side-column"> 
+      <div class="panel-box alert-box-border"> 
+        <h3 class="red-text">IMPACT ANALYSIS</h3> 
+        <div class="event-title" id="event-name">EVENT: NONE SELECTED</div> 
+        <div class="shock-level">Shock Level: <span id="shock-lvl" class="red
+text">DORMANT</span></div> 
+        <div class="intensity-bar"><div class="fill" id="intensity-fill" style="width: 
+0%"></div></div> 
+      </div> 
+  
+      <div class="panel-box"> 
+        <h3>GLOBAL IMPACT SCORE</h3> 
+        <div class="big-score" id="global-score-num">00<span class="small
+total">/100</span></div> 
+      </div> 
+  
+      <div class="panel-box"> 
+        <h3>TOP AFFECTED COUNTRIES</h3> 
+        <div id="affected-countries-list"> 
+          <p class="muted-text">No active shock waves.</p> 
+        </div> 
+      </div> 
+  
+      <div class="panel-box"> 
+        <h3>SECTOR RISK (GLOBAL)</h3> 
+        <div id="sector-risk-list"></div> 
+      </div> 
+    </aside> 
+  
+  </div> 
+  
+  <footer class="bottom-grid"> 
+    <div class="panel-box"> 
+      <h3>LIVE EVENT FEED</h3> 
+      <div class="feed-container" id="live-feed"> 
+        <div class="feed-item"><span>08:41:02</span> System monitoring trade channels. 
+Stable.</div> 
+      </div> 
+</div> 
+<div class="panel-box"> 
+<h3>COMMODITY PRICE IMPACT</h3> 
+<div class="price-impact-container" id="price-impact"></div> 
+</div> 
+<div class="panel-box unique-gradient"> 
+<h3>MONTE CARLO SIMULATION</h3> 
+<p class="small-text">Simulating 10,000 global stress scenarios...</p> 
+<div class="progress-bar-container"><div class="bar-fill" style="width: 
+100%"></div></div> 
+<div class="monte-carlo-results"> 
+<div><small>WORST CASE</small><br><strong class="red-text" id="mc-worst">
+0.00%</strong><br><small>Global GDP</small></div> 
+<div><small>BEST CASE</small><br><strong class="green-text" id="mc-best">
+0.00%</strong><br><small>Global GDP</small></div> 
+<div><small>CONFIDENCE</small><br><strong>95%</strong><br><small>Interval</sma
+ll></div> 
+</div> 
+</div> 
+</footer> 
+</div> 
