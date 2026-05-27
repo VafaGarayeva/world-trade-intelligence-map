@@ -154,13 +154,13 @@ const ciberDataEngine = {
 // ORCHESTRATION LAYER: Dynamic State Changes 
 // ==============================================================================
 function triggerCyberShock(key, element) { 
-  // Ssenari panelindəki vizual aktivliyi idarə edirik
-  const btns = document.querySelectorAll('.scenario-list button, .scen-btn'); 
-  btns.forEach(b => b.classList.remove('active')); 
-  if (element) element.classList.add('active'); 
-  
   const data = ciberDataEngine[key]; 
   if (!data) return;
+
+  // Ssenari panelindəki vizual aktivliyi (neon yaşıl çərçivəni) idarə edirik
+  const btns = document.querySelectorAll('.scenario-list .scen-btn'); 
+  btns.forEach(b => b.classList.remove('active')); 
+  if (element) element.classList.add('active'); 
 
   // 1. Core Analytics Setup 
   document.getElementById("event-name").innerText = data.title; 
@@ -233,46 +233,44 @@ function triggerCyberShock(key, element) {
 } 
 
 // ==============================================================================
-// VIEW TOGGLE CONTROLLER (2D / 3D Modları)
+// EVENTS & LISTENERS INITIALIZATION
 // ==============================================================================
-const viewButtons = document.querySelectorAll('.view-toggle button'); 
-
-viewButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    viewButtons.forEach(b => b.classList.remove('active')); 
-    btn.classList.add('active'); 
-    
-    const currentView = btn.textContent.trim();
-    console.log(`Görünüş rejimi dəyişdirildi: ${currentView}`);
+document.addEventListener("DOMContentLoaded", function() {
+  
+  // A. Görünüş Düymələrinin İdarə Edilməsi (2D / 3D Keçidi)
+  const viewButtons = document.querySelectorAll('.view-toggle button'); 
+  viewButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      viewButtons.forEach(b => b.classList.remove('active')); 
+      btn.classList.add('active'); 
+      
+      const currentView = btn.textContent.trim();
+      console.log(`Görünüş rejimi dəyişdirildi: ${currentView}`);
+    });
   });
-});
 
-// ==============================================================================
-// SCENARIO BUTTONS INTERACTION LINK (Dinamik Klik Əlaqəsi)
-// ==============================================================================
-const scenarioButtons = document.querySelectorAll('.scenario-list button, .scen-btn'); 
-
-scenarioButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const text = button.innerText.toUpperCase();
-    
-    // Düymənin adına əsasən data engine-dəki açarı təyin edirik
-    if (text.includes("TAIWAN")) {
-      triggerCyberShock('TAIWAN', button);
-    } else if (text.includes("SUEZ")) {
-      triggerCyberShock('SUEZ', button);
-    } else if (text.includes("AZERBAIJAN") || text.includes("AZERI")) {
-      triggerCyberShock('AZERI', button);
-    } else if (text.includes("CHINA")) {
-      triggerCyberShock('CHINA', button);
-    }
+  // B. Dinamik Ssenari Düymələrinin Klik Eventləri
+  const scenarioButtons = document.querySelectorAll('.scenario-list .scen-btn'); 
+  scenarioButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const text = button.innerText.toUpperCase();
+      
+      if (text.includes("TAIWAN")) {
+        triggerCyberShock('TAIWAN', button);
+      } else if (text.includes("SUEZ")) {
+        triggerCyberShock('SUEZ', button);
+      } else if (text.includes("AZERBAIJAN") || text.includes("AZE")) {
+        triggerCyberShock('AZERI', button);
+      } else if (text.includes("CHINA")) {
+        // "China Export Collapse", "US-China Trade War" və "China Export Control" bura daxildir
+        triggerCyberShock('CHINA', button);
+      }
+    });
   });
-});
 
-// ==============================================================================
-// INITIAL STATE SETUP (Sayt Açılanda İlk Başlanğıc Vəziyyəti)
-// ==============================================================================
-window.onload = function() { 
-  const firstBtn = document.querySelector('.scen-btn'); 
-  triggerCyberShock('TAIWAN', firstBtn); 
-};
+  // C. Sayt İlk Açılanda Tayvan Ssenarisini Yüklə
+  const firstBtn = document.querySelector('.scenario-list .scen-btn');
+  if (firstBtn) {
+    triggerCyberShock('TAIWAN', firstBtn); 
+  }
+});
