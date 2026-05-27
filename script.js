@@ -143,8 +143,8 @@ const ciberDataEngine = {
       { key: "Crude Oil", change: "-5.3%", cls: "green-text" } 
     ], 
     feed: [ 
-      "Systemic manufacturing freeze reported across supply chain corridors.", 
-      "Global retail giants issue warnings on inventory levels.", 
+      "Systemic manufacturing freeze reported across major industrial sectors.", 
+      "Global retail giants issue warnings on holiday season inventory levels.", 
       "Global trade network structural stability factor drops dramatically." 
     ] 
   } 
@@ -157,7 +157,8 @@ function triggerCyberShock(key, element) {
   const data = ciberDataEngine[key]; 
   if (!data) return;
 
-  const btns = document.querySelectorAll('.scenario-list .scen-btn'); 
+  // Həm .scenario-list, həm də .scenario-buttons daxilindəki düymələrin aktivliyini sıfırlayırıq
+  const btns = document.querySelectorAll('.scen-btn'); 
   btns.forEach(b => b.classList.remove('active')); 
   if (element) element.classList.add('active'); 
 
@@ -229,17 +230,18 @@ function triggerCyberShock(key, element) {
 document.addEventListener("DOMContentLoaded", function() {
   
   // A. 2D / 3D Görünüş Düymələrinin Klik İdarəsi
-  const viewButtons = document.querySelectorAll('.view-toggle button'); 
+  const viewButtons = document.querySelectorAll('.view-toggle button, .map-view-controls button'); 
   viewButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation(); // Klik hadisəsinin xəritə qatlarına keçməsini tamamilə əngəlləyir
       viewButtons.forEach(b => b.classList.remove('active')); 
       btn.classList.add('active'); 
       console.log(`Görünüş dəyişdirildi: ${btn.textContent.trim()}`);
     });
   });
 
-  // B. Yenilənmiş Ssenari Düymələrinin Klik İdarəsi
-  const scenarioButtons = document.querySelectorAll('.scenario-list .scen-btn'); 
+  // B. Ssenari Düymələrinin Klik Eventləri
+  const scenarioButtons = document.querySelectorAll('.scen-btn'); 
   scenarioButtons.forEach(button => {
     button.addEventListener('click', () => {
       const text = button.innerText.toUpperCase();
@@ -256,8 +258,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  // C. İlkin Olaraq Tayvan Ssenarisini Yüklə
-  const firstBtn = document.querySelector('.scenario-list .scen-btn');
+  // C. İlk Açılanda Tayvan Ssenarisini Default Olaraq Yüklə
+  const firstBtn = document.querySelector('.scen-btn');
   if (firstBtn) {
     triggerCyberShock('TAIWAN', firstBtn); 
   }
